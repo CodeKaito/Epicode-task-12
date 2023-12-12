@@ -50,7 +50,68 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
              -ms-user-select: none;
              user-select: none;
          }
- 
+         /* ESERCIZIO 1) Crea un selettore per selezionare l'<h1> nella sezione "hero", ovvero nel jumbotron */
+        div.jumbotron div h1 {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 2) Crea un selettore per selezionare tutti i figli dell'elemento navbar */
+        nav.nav span {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 3) Crea un selettore per selezionare il link "Continua a leggere" del jumbotron */
+        div.jumbotron p.lead a {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 4) Crea un selettore per selezionare il primo blog post, non riesco con il :first-child */
+        main.container div.row div.blog-main div.blog-post:first-of-type {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 5) Crea un selettore per selezionare l'<hr> del primo blog post e colorarlo di rosso */
+        main.container div.row div.blog-main div.blog-post:first-of-type hr {
+            background-color: red;
+        }
+
+        /* ESERCIZIO 6) Crea un selettore per selezionare i link pari della navbar */
+        nav.nav span:nth-child(even) {
+            background-color: orange;
+        }
+
+        /* TODO */
+        /* ESERCIZIO 7) Crea un selettore per selezionare tutti gli <li> della prima "ordered-list" della sidebar ("Archivio") */
+        div.p-4:nth-child(2) ol:nth-child(2) li {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 8) Crea un selettore per selezionare l'autore del secondo blog post */
+        div.blog-main div.blog-post:nth-child(3) p.blog-post-meta a[href="#"] {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 9) Crea un selettore per selezionare il secondo <li> della lista del terzo blog post */
+        div.blog-main div.blog-post:nth-child(4) ul:nth-child(4) li:nth-child(2) {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 10) Crea un selettore per selezionare il link "Torna su" che trovi a fondo pagina nell'angolo in basso a destra */
+        .float-right {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 11) Crea un selettore per selezionare il bottone "Nuovi" che trovi in basso */
+        nav.blog-pagination a.btn-outline-secondary {
+            background-color: yellow;
+        }
+
+        /* ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer */
+        footer.blog-footer p.text-center a:nth-child(2) {
+            background-color: yellow;
+        }
+
+
          @media (min-width: 768px) {
              .bd-placeholder-img-lg {
                  font-size: 3.5rem;
@@ -378,7 +439,6 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
      <footer class="blog-footer">
          <p class="text-center">
              Blog creato per
-             <a>hello</a>
              <a href="https://getbootstrap.com/">Bootstrap</a> di
              <a href="https://twitter.com/mdo">@mdo</a>.
          </p>
@@ -389,9 +449,27 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
          /* JS Exercises should go here */
  
         // EXTRA Crea con JavaScript la funzionalità per rimuovere il link "twitter" sotto alla sezione "Altro" nell'elemento "aside". Deve avvenire al caricamento della pagina, automticamente.
-        
+        window.onload = (e) => {
+            document.querySelector('div.p-4:nth-child(3) ol:last-child li:nth-child(2)').remove();
+        };
         
         // EXTRA Crea con JavaScript la funzionalità per rimuovere il corrispondente elemento padre dal DOM cliccando sul link "Continua a leggere".
+        const links = document.querySelectorAll("a.stretched-link");
+        const linkPost = document.querySelector("div.col-md-6");
+        links.forEach(link => { 
+            link.addEventListener("click", (e) => {
+            console.log("Link cliccato:", link.href);
+            // Ottieni il genitore <div> con la classe "col-md-6"
+            const colMd6Parent = link.closest('.col-md-6');
+
+            // Rimuovi l'intero genitore <div> se presente
+            if (colMd6Parent) {
+                colMd6Parent.remove();
+            }
+            
+            e.preventDefault(); // Questo eviterà il comportamento predefinito del link
+            });
+        });
         
         
         // EXTRA Crea con JavaScript la funzionalità per creare un alert col nome dell'autore ogni volta che il cursore passa sopra l'autore del post.
