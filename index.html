@@ -460,7 +460,7 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
         const links = document.querySelectorAll("a.stretched-link");
         const linkPost = document.querySelector("div.col-md-6");
         links.forEach(link => { 
-            link.addEventListener("click", (e) => {
+            link.addEventListener("click", () => {
             console.log("Link cliccato:", link.href);
             // Ottieni il genitore <div> con la classe "col-md-6"
             const colMd6Parent = link.closest('.col-md-6');
